@@ -9,6 +9,9 @@ import Parse
 
 class ViewController: UIViewController {
   
+  
+  @IBOutlet weak var collectionViewBottomConstraint: NSLayoutConstraint!
+  
   @IBOutlet weak var imageView: UIImageView!
   
   @IBOutlet weak var alertButton: UIButton!
@@ -20,13 +23,28 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
       
+//      if let constraints = view.constraints() as? [NSLayoutConstraint] {
+//        println(constraints.count)
+//      }
+      
+      
+      
+      
       let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (alert) -> Void in
         println("Alert cancelled")
       }
-
-      let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) { (alert) -> Void in
-        self.presentViewController(self.picker, animated: true, completion: nil)
+      if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+        let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) { (alert) -> Void in
+          self.presentViewController(self.picker, animated: true, completion: nil)
+        }
+              alert.addAction(cameraAction)
       }
+        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.Default) { (alert) -> Void in
+          self.presentViewController(self.picker, animated: true, completion: nil)
+        }
+
+      
+      
       let chromeAction = UIAlertAction(title: "Chrome", style: UIAlertActionStyle.Default) { (alert) -> Void in
         let image = CIImage(image: self.imageView.image)
         let chromeFilter = CIFilter(name: "CIPhotoEffectChrome")
@@ -77,13 +95,64 @@ class ViewController: UIViewController {
         let finalImage = UIImage(CGImage: cgImage)
         self.imageView.image = finalImage
       }
-
+      let fadeAction = UIAlertAction(title: "Fade", style: UIAlertActionStyle.Default) { (alert) -> Void in
+        let image = CIImage(image: self.imageView.image)
+        
+        let fadeFilter = CIFilter(name: "CIPhotoEffectFade")
+        fadeFilter.setValue(image, forKey: kCIInputImageKey)
+        
+        let options = [kCIContextWorkingColorSpace: NSNull()]
+        let eaglContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
+        let gpuContext = CIContext(EAGLContext: eaglContext, options: options)
+        
+        let outputImage = fadeFilter.outputImage
+        let extent = outputImage.extent()
+        
+        let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
+        let finalImage = UIImage(CGImage: cgImage)
+        self.imageView.image = finalImage
+      }
+      let unsharpAction = UIAlertAction(title: "Sharpen", style: UIAlertActionStyle.Default) { (alert) -> Void in
+        let image = CIImage(image: self.imageView.image)
+        
+        let unsharpFilter = CIFilter(name: "CIUnsharpMask")
+        unsharpFilter.setValue(image, forKey: kCIInputImageKey)
+        
+        let options = [kCIContextWorkingColorSpace: NSNull()]
+        let eaglContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
+        let gpuContext = CIContext(EAGLContext: eaglContext, options: options)
+        
+        let outputImage = unsharpFilter.outputImage
+        let extent = outputImage.extent()
+        
+        let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
+        let finalImage = UIImage(CGImage: cgImage)
+        self.imageView.image = finalImage
+      }
+      if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+let collectionViewAction = UIAlertAction(title: "Collection View", style: UIAlertActionStyle.Default) { (alert) -> Void in
+  self.enterFilterMode()
+      }
+        alert.addAction(collectionViewAction)
+      }
+      
+      let uploadAction = UIAlertAction(title: "Upload", style: UIAlertActionStyle.Default) { (alert) -> Void in
+        
+      }
+      
+      
+      
+      
+      
+      
+      alert.addAction(photoLibraryAction)
       alert.addAction(cancelAction)
-      alert.addAction(cameraAction)
       alert.addAction(sepiaAction)
       alert.addAction(chromeAction)
       alert.addAction(transferAction)
-      
+      alert.addAction(fadeAction)
+      alert.addAction(unsharpAction)
+
 
       self.picker.delegate = self
       self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
@@ -104,9 +173,24 @@ class ViewController: UIViewController {
       }
     self.presentViewController(alert, animated: true, completion: nil)
   }
-  
-  
-}
+  func enterFilterMode(){
+    collectionViewBottomConstraint.constant = 0
+    
+    UIView.animateWithDuration(0.3, animations: { () -> Void in
+      self.view.layoutIfNeeded()
+    })
+    
+    let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "closeCollectionViewMode")
+    navigationItem.rightBarButtonItem = doneButton
+  }
+  func closeCollectionViewMode() {
+      collectionViewBottomConstraint.constant = -150
+      
+      UIView.animateWithDuration(0.3, animations: { () -> Void in
+        self.view.layoutIfNeeded()
+      })
+    }
+  }
 
 
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
