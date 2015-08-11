@@ -101,10 +101,10 @@
             </objects>
             <point key="canvasLocation" x="2630" y="259"/>
         </scene>
-        <!--TimeLine-->
+        <!--Timeline-->
         <scene sceneID="Jnf-E1-AlC">
             <objects>
-                <viewController id="xkL-Fn-DlQ" sceneMemberID="viewController">
+                <viewController id="xkL-Fn-DlQ" customClass="TimelineViewController" customModule="ParseStarterProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="N6r-jA-ufm"/>
                         <viewControllerLayoutGuide type="bottom" id="czD-e8-3Ym"/>
@@ -114,7 +114,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="TimeLine" id="95s-OD-ovM"/>
+                    <tabBarItem key="tabBarItem" title="Timeline" id="95s-OD-ovM"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2wc-tR-60g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

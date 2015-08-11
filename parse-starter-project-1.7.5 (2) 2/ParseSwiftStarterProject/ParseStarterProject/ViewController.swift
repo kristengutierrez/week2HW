@@ -137,6 +137,15 @@ let collectionViewAction = UIAlertAction(title: "Collection View", style: UIAler
       }
       
       let uploadAction = UIAlertAction(title: "Upload", style: UIAlertActionStyle.Default) { (alert) -> Void in
+        let post = PFObject(className: "Post")
+        post["text"] = "blah blah"
+        if let image = self.imageView.image,
+                imageData = UIImageJPEGRepresentation(image, 1.0)
+        {
+          let file = PFFile(name: "post.jpeg", data: imageData)
+          post["image"] = file
+        }
+        
         
       }
       
@@ -144,7 +153,7 @@ let collectionViewAction = UIAlertAction(title: "Collection View", style: UIAler
       
       
       
-      
+      alert.addAction(uploadAction)
       alert.addAction(photoLibraryAction)
       alert.addAction(cancelAction)
       alert.addAction(sepiaAction)
@@ -190,6 +199,7 @@ let collectionViewAction = UIAlertAction(title: "Collection View", style: UIAler
         self.view.layoutIfNeeded()
       })
     }
+  
   }
 
 
