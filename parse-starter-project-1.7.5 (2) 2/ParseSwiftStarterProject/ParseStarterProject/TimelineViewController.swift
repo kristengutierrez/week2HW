@@ -24,12 +24,12 @@ class TimelineViewController: UIViewController {
               if let error = error {
                 println(error.localizedDescription)
               } else if let data = data,
-                image = UIImage(data: data)
-              //NSOperationQueue.mainQueue()
-              {
-//                  let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
-//                  self.view.addSubview(imageView)
-//                  imageView.image = image
+                image = UIImage(data: data){
+                  NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                    let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+                    self.view.addSubview(imageView)
+                    imageView.image = image
+                  })
               }
             })
           }
