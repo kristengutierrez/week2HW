@@ -9,7 +9,25 @@
 import UIKit
 import Parse
 
-
+//class Actions {
+//  class func filterAction(action: UIAlertAction, image: UIImage, filter: CIFilter) -> UIImage {
+//    let chromeAction = UIAlertAction(title: "Chrome", style: UIAlertActionStyle.Default) { (alert) -> Void in
+//      let image = CIImage(image: self.imageView.image)
+//      let chromeFilter = CIFilter(name: "CIPhotoEffectChrome")
+//      chromeFilter.setValue(image, forKey: kCIInputImageKey)
+//    
+//      let options = [kCIContextWorkingColorSpace: NSNull()]
+//      let eaglContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
+//      let gpuContext = CIContext(EAGLContext: eaglContext, options: options)
+//    
+//      let outputImage = chromeFilter.outputImage
+//      let extent = outputImage.extent()
+//    
+//      let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
+//      let finalImage = UIImage(CGImage: cgImage)
+//      self.imageView.image = finalImage
+//  }
+//}
 
 //
 //let chromeAction = UIAlertAction(title: "Chrome", style: UIAlertActionStyle.Default) { (alert) -> Void in

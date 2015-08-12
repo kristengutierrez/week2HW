@@ -10,6 +10,10 @@ import UIKit
 import Parse
 
 class TimelineViewController: UIViewController {
+  
+  var timelineImageView = [PostCell]()
+  
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     let query = PFQuery(className: "Post")
@@ -26,9 +30,7 @@ class TimelineViewController: UIViewController {
               } else if let data = data,
                 image = UIImage(data: data){
                   NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                    let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
-                    self.view.addSubview(imageView)
-                    imageView.image = image
+                    self.timelineImageView.image = image
                   })
               }
             })
@@ -44,3 +46,19 @@ class TimelineViewController: UIViewController {
   }
 
 }
+
+//MARK: UITableViewDataSource
+extension TimelineViewController: UITableViewDataSource {
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 1
+  }
+  
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! PostCell
+var image = cell.timelineImageView.image
+
+
+}
+
+}
+

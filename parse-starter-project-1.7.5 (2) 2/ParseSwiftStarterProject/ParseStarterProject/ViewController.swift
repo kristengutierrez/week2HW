@@ -140,18 +140,16 @@ let collectionViewAction = UIAlertAction(title: "Collection View", style: UIAler
         let post = PFObject(className: "Post")
         post["text"] = "blah blah"
         if let image = self.imageView.image,
-                imageData = UIImageJPEGRepresentation(image, 1.0)
+                data = UIImageJPEGRepresentation(image, 1.0)
         {
-          let file = PFFile(name: "post.jpeg", data: imageData)
+          let file = PFFile(name: "post.jpeg", data: data)
           post["image"] = file
         }
-        
+        post.saveInBackgroundWithBlock({ (succeeded, error) -> Void in
+          
+        })
         
       }
-      
-      
-      
-      
       
       alert.addAction(uploadAction)
       alert.addAction(photoLibraryAction)
