@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		170DF5AC1B7AA7C4003F936A /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170DF5AB1B7AA7C4003F936A /* TimelineViewController.swift */; };
+		170DF5B01B7BA7FE003F936A /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170DF5AF1B7BA7FE003F936A /* Actions.swift */; };
 		1761ED721B7A5EC90010497E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1761ED711B7A5EC90010497E /* ViewController.swift */; };
 		1761ED741B7A5ED10010497E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1761ED731B7A5ED10010497E /* AppDelegate.swift */; };
 		1761ED761B7A5EDA0010497E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1761ED751B7A5EDA0010497E /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		170DF5AB1B7AA7C4003F936A /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
+		170DF5AF1B7BA7FE003F936A /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		1761ED711B7A5EC90010497E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1761ED731B7A5ED10010497E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1761ED751B7A5EDA0010497E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				1761ED711B7A5EC90010497E /* ViewController.swift */,
+				170DF5AF1B7BA7FE003F936A /* Actions.swift */,
 				170DF5AB1B7AA7C4003F936A /* TimelineViewController.swift */,
 			);
 			name = Controller;
@@ -182,6 +185,7 @@
 				TargetAttributes = {
 					81BA81441A49DA1800E65899 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 8EQQ5TWMWC;
 					};
 				};
 			};
@@ -238,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1761ED741B7A5ED10010497E /* AppDelegate.swift in Sources */,
+				170DF5B01B7BA7FE003F936A /* Actions.swift in Sources */,
 				1761ED721B7A5EC90010497E /* ViewController.swift in Sources */,
 				170DF5AC1B7AA7C4003F936A /* TimelineViewController.swift in Sources */,
 			);
@@ -330,6 +335,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -337,6 +344,7 @@
 				INFOPLIST_FILE = ParseStarterProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 			};
 			name = Debug;
@@ -346,6 +354,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -353,6 +363,7 @@
 				INFOPLIST_FILE = ParseStarterProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 			};
 			name = Release;
