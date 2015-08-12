@@ -6,13 +6,14 @@ var str = "Hello, playground"
 
 ////Monday////
 ////Code Challenge: Write a function that determines how many words there are in a sentence
-still working on this
-//func yeah(counting: NSArray) -> (Int) {
-//var sentence = "I will take the Ring to Mordor!"
-//var counting = sentence.componentsSeparatedByString(" ")
-//var result = counting.count
-//  return result
-//}
+//still working on this
+func yeah(counting: NSString) -> (Int) {
+var arr = counting.componentsSeparatedByString(" ")
+var result = arr.count
+  return result
+}
+
+var thing = yeah("I will take the Ring to Mordor!")
 
 ////Tuesday////
 ////Code Challenge: Write a function that returns all the odd elements of an array
