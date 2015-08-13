@@ -178,7 +178,7 @@
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="aq5-d3-GwM" secondAttribute="bottom" constant="44" id="KGe-qE-Zyg">
-                                <variation key="heightClass=regular-widthClass=compact" constant="-150"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="zp9-x7-IMM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="Prn-e4-5Vf">
                                 <variation key="heightClass=regular-widthClass=regular" constant="14"/>
