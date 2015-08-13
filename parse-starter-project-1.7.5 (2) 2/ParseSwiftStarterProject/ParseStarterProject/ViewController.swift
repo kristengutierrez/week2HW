@@ -158,9 +158,7 @@ extension ViewController : UICollectionViewDataSource {
       let filteredImage = filter(thumbnail, context)
       cell.cellImageView.image = filteredImage
       var arr = ["Sepia","Chrome","Transfer","Fade","Sharpen"]
-      for i in arr {
-        cell.label.text = i
-      }
+        cell.label.text = arr[indexPath.row]
 
     } else {
       println("thumbnail failed")
@@ -168,4 +166,16 @@ extension ViewController : UICollectionViewDataSource {
     return cell
   }
 }
+
+//MARK: UICollectionViewDelegate
+extension ViewController : UICollectionViewDelegate {
+  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ThumbnailCell", forIndexPath: indexPath) as! ThumbnailCell
+    cell.cellImageView.image = displayImage
+    collectionView.reloadData()
+  }
+}
+
+
+
 
