@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
       
        collectionView.dataSource = self
-      
+      collectionView.delegate = self
       
       let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (alert) -> Void in
         println("Alert cancelled")
@@ -172,7 +172,6 @@ extension ViewController : UICollectionViewDelegate {
   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ThumbnailCell", forIndexPath: indexPath) as! ThumbnailCell
     cell.cellImageView.image = displayImage
-    collectionView.reloadData()
   }
 }
 
