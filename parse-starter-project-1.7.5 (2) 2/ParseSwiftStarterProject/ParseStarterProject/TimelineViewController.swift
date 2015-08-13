@@ -30,7 +30,7 @@ class TimelineViewController: UIViewController {
               } else if let data = data,
                 image = UIImage(data: data){
                   NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                    self.timelineImageView.image = image
+                  //  self.timelineImageView.image = image
                   })
               }
             })
@@ -56,7 +56,7 @@ extension TimelineViewController: UITableViewDataSource {
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! PostCell
 var image = cell.timelineImageView.image
-
+return cell
 
 }
 
