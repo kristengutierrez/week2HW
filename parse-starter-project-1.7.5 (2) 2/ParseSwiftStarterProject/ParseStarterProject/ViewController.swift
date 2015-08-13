@@ -42,7 +42,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-      
+      imageView.image = UIImage(named: "photo.jpg")
        collectionView.dataSource = self
       collectionView.delegate = self
       
@@ -112,6 +112,16 @@ let collectionViewAction = UIAlertAction(title: "Collection View", style: UIAler
       }
     self.presentViewController(alert, animated: true, completion: nil)
   }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "gallerySegue" {
+      if let galleryViewController = segue.destinationViewController as? GalleryViewController {
+
+      }
+    }
+  }
+  
+  
   func enterFilterMode(){
     collectionViewBottomConstraint.constant = 0
     
@@ -176,5 +186,11 @@ extension ViewController : UICollectionViewDelegate {
 }
 
 
+//MARK: ImageSelectedDelegate
+extension ViewController : ImageSelectedDelegate {
+  func controllerDidSelectImage(newImage: UIImage) {
+    displayImage = newImage
+  }
+}
 
 

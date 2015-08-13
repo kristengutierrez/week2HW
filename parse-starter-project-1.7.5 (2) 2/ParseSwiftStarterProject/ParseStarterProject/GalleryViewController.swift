@@ -9,20 +9,33 @@
 import UIKit
 import Photos
 
+
+protocol ImageSelectedDelegate : class {
+  func controllerDidSelectImage (UIImage) -> (Void)
+}
+
 class GalleryViewController : UIViewController {
   
       var fetchResult : PHFetchResult!
-  
-
+  var startingScale: CGFloat = 0
+//  var scale : CGFloat = 0
+  //var desiredFinalImageSize :
   let cellSize = CGSize(width: 100, height: 100)
   @IBOutlet weak var collectionView: UICollectionView!
+  weak var delegate : ImageSelectedDelegate?
+  
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
 
-    let result = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: nil)
+    fetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: nil)
+    collectionView.dataSource = self
+    collectionView.delegate = self
     
+    let pinchGesture = UIPinchGestureRecognizer(target: self, action: "pinchRecognized:")
+    collectionView.addGestureRecognizer(pinchGesture)
 
     
     
@@ -30,6 +43,26 @@ class GalleryViewController : UIViewController {
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
+  }
+  
+  func pinchRecognized(pinch : UIPinchGestureRecognizer) {
+    if pinch.state == UIGestureRecognizerState.Began {
+      println("began")
+      startingScale = pinch.scale
+    }
+    if pinch.state == UIGestureRecognizerState.Changed {
+      
+    }
+    if pinch.state == UIGestureRecognizerState.Ended {
+//      scale = startingScale * pinch.scale
+//      let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+//      let newSize = CGSize(width: layout.itemSize.width * scale, height: layout.itemSize.height * scale)
+//      
+//      collectionView.performBatchUpdates({ () -> Void in
+//      layout.itemSize = newSize
+//        layout.invalidateLayout()
+//      }, completion: nil)
+    }
   }
 }
 
@@ -53,5 +86,30 @@ extension GalleryViewController : UICollectionViewDataSource {
     }
     return cell
   }
-
 }
+
+extension GalleryViewController : UICollectionViewDelegate {
+  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+ 
+let options = PHImageRequestOptions()
+    options.synchronous = true
+    
+        if let asset = fetchResult[indexPath.row] as? PHAsset {
+      PHCachingImageManager.defaultManager().requestImageForAsset(asset, targetSize: cellSize, contentMode: PHImageContentMode.AspectFill, options: options) { (image, info) -> Void in
+        if let image = image {
+ 
+          self.delegate?.controllerDidSelectImage(image)
+          self.navigationController?.popViewControllerAnimated(true)
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
