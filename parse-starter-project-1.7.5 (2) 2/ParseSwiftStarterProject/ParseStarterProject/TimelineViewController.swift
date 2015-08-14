@@ -10,9 +10,7 @@ import UIKit
 import Parse
 
 class TimelineViewController: UIViewController {
-  
-  var timelineImageView = [PostCell]()
-  
+  var arr = [UIImage]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,7 +28,7 @@ class TimelineViewController: UIViewController {
               } else if let data = data,
                 image = UIImage(data: data){
                   NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                  //  self.timelineImageView.image = image
+                   self.arr.append(image)
                   })
               }
             })
@@ -51,11 +49,14 @@ class TimelineViewController: UIViewController {
 extension TimelineViewController: UITableViewDataSource {
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return 1
+    //return self.posts.count
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! PostCell
-var image = cell.timelineImageView.image
+//var image = cell.timelineImageView.image
+   var selectedCell =  arr[indexPath.row]
+    cell.timelineImageView.image = selectedCell
 return cell
 
 }

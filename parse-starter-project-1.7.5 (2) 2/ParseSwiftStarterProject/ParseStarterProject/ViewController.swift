@@ -43,9 +43,12 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
-    imageView.image = UIImage(named: "photo.jpg")
+    displayImage = UIImage(named: "photo.jpg")
     collectionView.dataSource = self
     collectionView.delegate = self
+    
+    navigationItem.rightBarButtonItem = nil
+    
     
     let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (alert) -> Void in
       println("Alert cancelled")
@@ -62,6 +65,7 @@ class ViewController: UIViewController {
     if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
       let filterAction = UIAlertAction(title: "Filters", style: UIAlertActionStyle.Default) { (alert) -> Void in
         self.enterFilterMode()
+
       }
       alert.addAction(filterAction)
     }
@@ -148,7 +152,7 @@ class ViewController: UIViewController {
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
     let image: UIImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
-    self.imageView.image = image
+    displayImage = image
     self.picker.dismissViewControllerAnimated(true, completion: nil)
   }
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {
@@ -182,13 +186,12 @@ extension ViewController : UICollectionViewDataSource {
 //MARK: UICollectionViewDelegate
 extension ViewController : UICollectionViewDelegate {
   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-    //var cell = collectionView.cellForItemAtIndexPath(indexPath)
-    var filter = filters[indexPath.row]
-    var selectedImage = filter.image
+
+    let filter = filters[indexPath.row]
     if let thumbnail = thumbnail {
-      displayImage = selectedImage
+      let selectedImage = filter(displayImage, context)
+      self.imageView.image = selectedImage
     }
-    
   }
 }
 

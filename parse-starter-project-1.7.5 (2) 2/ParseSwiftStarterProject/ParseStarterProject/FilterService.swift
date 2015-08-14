@@ -9,6 +9,7 @@
 import UIKit
 
 class FilterService {
+  
   class func sepiaImageFromOriginalImage(original: UIImage, context: CIContext) -> UIImage! {
     let image = CIImage(image: original)
     let filter = CIFilter(name: "CISepiaTone")
