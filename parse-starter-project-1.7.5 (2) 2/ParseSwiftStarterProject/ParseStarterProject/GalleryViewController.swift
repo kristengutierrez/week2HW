@@ -18,8 +18,8 @@ class GalleryViewController : UIViewController {
   
       var fetchResult : PHFetchResult!
   var startingScale: CGFloat = 0
-//  var scale : CGFloat = 0
-  //var desiredFinalImageSize :
+  var scale : CGFloat = 0
+  var desiredFinalImageSize : CGSize!
   let cellSize = CGSize(width: 100, height: 100)
   @IBOutlet weak var collectionView: UICollectionView!
   weak var delegate : ImageSelectedDelegate?
@@ -47,21 +47,20 @@ class GalleryViewController : UIViewController {
   
   func pinchRecognized(pinch : UIPinchGestureRecognizer) {
     if pinch.state == UIGestureRecognizerState.Began {
-      println("began")
       startingScale = pinch.scale
     }
     if pinch.state == UIGestureRecognizerState.Changed {
       
     }
     if pinch.state == UIGestureRecognizerState.Ended {
-//      scale = startingScale * pinch.scale
-//      let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//      let newSize = CGSize(width: layout.itemSize.width * scale, height: layout.itemSize.height * scale)
-//      
-//      collectionView.performBatchUpdates({ () -> Void in
-//      layout.itemSize = newSize
-//        layout.invalidateLayout()
-//      }, completion: nil)
+      scale = startingScale * pinch.scale
+      let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+      let newSize = CGSize(width: layout.itemSize.width * scale, height: layout.itemSize.height * scale)
+      
+      collectionView.performBatchUpdates({ () -> Void in
+      layout.itemSize = newSize
+        layout.invalidateLayout()
+      }, completion: nil)
     }
   }
 }
@@ -97,7 +96,7 @@ let options = PHImageRequestOptions()
         if let asset = fetchResult[indexPath.row] as? PHAsset {
       PHCachingImageManager.defaultManager().requestImageForAsset(asset, targetSize: cellSize, contentMode: PHImageContentMode.AspectFill, options: options) { (image, info) -> Void in
         if let image = image {
- 
+          println("calling request handler for row: \(indexPath.row) for image size: \(image.size)")
           self.delegate?.controllerDidSelectImage(image)
           self.navigationController?.popViewControllerAnimated(true)
         }

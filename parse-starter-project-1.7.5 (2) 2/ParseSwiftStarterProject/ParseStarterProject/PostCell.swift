@@ -12,4 +12,6 @@ class PostCell: UITableViewCell {
   
   @IBOutlet weak var timelineImageView: UIImageView!
   
+  
+  
 }
