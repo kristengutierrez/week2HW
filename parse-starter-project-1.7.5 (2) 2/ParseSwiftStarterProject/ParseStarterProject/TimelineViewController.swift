@@ -10,10 +10,17 @@ import UIKit
 import Parse
 
 class TimelineViewController: UIViewController {
+
+  @IBOutlet weak var tableView: UITableView!
+  
   var arr = [UIImage]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    tableView.dataSource = self
+    
+    
     let query = PFQuery(className: "Post")
     query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
       if let error = error {
@@ -29,6 +36,8 @@ class TimelineViewController: UIViewController {
                 image = UIImage(data: data){
                   NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                    self.arr.append(image)
+                    self.tableView.reloadData()
+
                   })
               }
             })
@@ -47,14 +56,17 @@ class TimelineViewController: UIViewController {
 
 //MARK: UITableViewDataSource
 extension TimelineViewController: UITableViewDataSource {
+  
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 1
-    //return self.posts.count
+        println(arr.count)
+    return arr.count
+
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! PostCell
 //var image = cell.timelineImageView.image
+    //lazy download the images, download them in cellforRow
    var selectedCell =  arr[indexPath.row]
     cell.timelineImageView.image = selectedCell
 return cell

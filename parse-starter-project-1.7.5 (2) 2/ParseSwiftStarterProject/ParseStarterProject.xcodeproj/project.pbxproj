@@ -82,6 +82,7 @@
 			children = (
 				1761ED751B7A5EDA0010497E /* Main.storyboard */,
 				1726C1531B7D3BBC0045F266 /* GridCell.swift */,
+				170DF5BB1B7BF887003F936A /* ThumbnailCell.swift */,
 				170DF5B51B7BCED3003F936A /* PostCell.swift */,
 			);
 			name = View;
@@ -90,6 +91,9 @@
 		1761ED781B7A5EF30010497E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				170DF5B91B7BF7C6003F936A /* ImageResizer.swift */,
+				170DF5B11B7BB422003F936A /* Keys.swift */,
+				170DF5B71B7BEE54003F936A /* FilterService.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -98,11 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				1761ED711B7A5EC90010497E /* ViewController.swift */,
-				170DF5BB1B7BF887003F936A /* ThumbnailCell.swift */,
-				170DF5B91B7BF7C6003F936A /* ImageResizer.swift */,
 				170DF5AB1B7AA7C4003F936A /* TimelineViewController.swift */,
-				170DF5B71B7BEE54003F936A /* FilterService.swift */,
-				170DF5B11B7BB422003F936A /* Keys.swift */,
 				1726C1511B7D392B0045F266 /* GalleryViewController.swift */,
 			);
 			name = Controller;
