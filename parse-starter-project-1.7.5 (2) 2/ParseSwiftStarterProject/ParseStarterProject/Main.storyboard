@@ -390,16 +390,19 @@
                                                         <constraint firstAttribute="height" constant="210" id="dH5-HE-php"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOd-qm-0Fe">
-                                                    <rect key="frame" x="195" y="233" width="210" height="55.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOd-qm-0Fe">
+                                                    <rect key="frame" x="195" y="233" width="210" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="IOd-qm-0Fe" firstAttribute="trailing" secondItem="Jrh-yu-4wb" secondAttribute="trailing" id="4Fs-Qz-eri"/>
                                                 <constraint firstAttribute="centerX" secondItem="Jrh-yu-4wb" secondAttribute="centerX" id="II7-U1-8he"/>
                                                 <constraint firstItem="Jrh-yu-4wb" firstAttribute="top" secondItem="qXQ-y5-Hfg" secondAttribute="topMargin" constant="-3" id="PFz-Jj-45B"/>
+                                                <constraint firstItem="IOd-qm-0Fe" firstAttribute="leading" secondItem="Jrh-yu-4wb" secondAttribute="leading" id="fgy-RS-YEp"/>
+                                                <constraint firstItem="IOd-qm-0Fe" firstAttribute="top" secondItem="Jrh-yu-4wb" secondAttribute="bottom" constant="18" id="ruR-rg-OVx"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
