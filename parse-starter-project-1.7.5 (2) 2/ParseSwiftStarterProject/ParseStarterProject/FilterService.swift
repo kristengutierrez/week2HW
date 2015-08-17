@@ -31,14 +31,12 @@ class FilterService {
   }
   class func fadeImageFromOriginalImage(original: UIImage, context: CIContext) -> UIImage! {
     let image = CIImage(image: original)
-    let name = "Fade"
     let filter = CIFilter(name: "CIPhotoEffectFade")
     filter.setValue(image, forKey: kCIInputImageKey)
     return self.filteredImageFromFilter(filter, context: context)
   }
   class func sharpenImageFromOriginalImage(original: UIImage, context: CIContext) -> UIImage! {
     let image = CIImage(image: original)
-    let name = "Sharpen"
     let filter = CIFilter(name: "CIUnsharpMask")
     filter.setValue(image, forKey: kCIInputImageKey)
     return self.filteredImageFromFilter(filter, context: context)
