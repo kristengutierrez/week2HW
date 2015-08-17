@@ -56,8 +56,15 @@ class TimelineViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
   func handleRefresh(refreshControl: UIRefreshControl) {
-
-
+//cant figure out how to re-fetch data from Parse
+let query = PFQuery(className: "Post")
+    query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+      if let error = error {
+        println(error.localizedDescription)
+      } else if let posts = results as? [PFObject] {
+        self.allPosts = posts
+      }
+    }
     self.tableView.reloadData()
     refreshControl.endRefreshing()
   }
