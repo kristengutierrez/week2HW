@@ -6,29 +6,29 @@ var str = "Hello, playground"
 
 ////Monday////
 ////Code Challenge: Write a function that determines how many words there are in a sentence
-//still working on this
-func yeah(counting: NSString) -> (Int) {
+func countingWords(counting: NSString) -> (Int) {
 var arr = counting.componentsSeparatedByString(" ")
-var result = arr.count
-  return result
+var numberResult = arr.count
+  return numberResult
 }
 
-var thing = yeah("I will take the Ring to Mordor!")
+let wordCount = countingWords("I will take the Ring to Mordor!")
 
 ////Tuesday////
 ////Code Challenge: Write a function that returns all the odd elements of an array
 
-//var iCantEven = ["1","2","3","4","5"]
-//
-//
-//for i in iCantEven {
-//  if i % 2 == 0 {
-//    println(" ")
-//  } else {
-//    return i
-//  }
-//}
+var iCantEven : [Int] = [1, 2, 3, 4, 5]
 
+func oddReturn(list : [Int]) -> [Int] {
+for i in list {
+  if (i % 2) == 0 {
+    println(" ")
+  } else {
+    println(i)
+  }
+}
+}
+let oddResult = oddReturn(iCantEven)
 
 
 ////Wednesday////
@@ -37,8 +37,54 @@ var thing = yeah("I will take the Ring to Mordor!")
 
 
 
+func fibonacciSequence(number: Int) -> Int {
+  if (number == 0) {
+    return 0
+  }
+else if (number == 1) {
+  return 1
+}
+return fibonacciSequence(number - 1) + fibonacciSequence(number - 2)
+}
+let result = fibonacciSequence(10)
+
+println(result)
+
+//var number : Int
+//
+//let sequence = GeneratorSequence(fibonacciSequence(number))
+//for n in sequence {
+//  if (n > 90) {
+//    break
+//  }
+//  print("\(n), ")
+//}
+
+
 ////Thursday////
 ////Code Challenge: Write a function that tests whether a string is a palindrome
+
+
+var word : String = "anna"
+func isPalindrome(sentence : String) -> Boolean {
+  var charactersInString = sentence.componentsSeparatedByString("")
+  var countingString : Int = charactersInString.count
+  for i in charactersInString {
+    if (i == (countingString - i)) {
+      return true
+    } else {
+      return false
+    }
+    
+  }
+}
+
+
+
+
+
+
+
 
 
 
